@@ -34,9 +34,13 @@ sub startup {
   $r->get('/track')->to( 'example#read_track' );
   $r->get('/track/create')->to( 'example#create_track' );
   $r->get('/track/delete')->to( 'example#delete_track' );
-  $r->get('/client')->to( 'example#read_client' );
-  $r->get('/client/create')->to( 'example#create_client' );
-  $r->get('/client/delete')->to( 'example#delete_client' );
+
+  $r->get('/client')->to( 'client#read_client' );
+  $r->get ('/client/edit/<:id>')->to( 'client#edit_form' );
+  $r->post('/client/edit/<:id>')->to( 'client#save_form' );
+  $r->get('/client/create')->to( 'client#create_client' );
+  $r->get('/client/delete/<:id>')->to( 'client#delete_client' );
+
   $r->get('/figura')->to( 'example#read_figura' );
   $r->get('/figura/create')->to( 'example#create_figura' );
   warn "APPLICATION READY\n";
