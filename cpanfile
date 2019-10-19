@@ -4,3 +4,4 @@ requires 'DBD::Pg';
 requires 'Mojolicious';
 requires 'Modern::Perl';
 requires 'DBIx::Class::InflateColumn::Serializer';
+requires 'DDP';
