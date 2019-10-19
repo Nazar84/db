@@ -1,6 +1,8 @@
 package Nazar::Controller::Client;
 use Mojo::Base 'Mojolicious::Controller';
 
+
+
 sub list_clients {
 	my( $c ) =  @_;
 
@@ -37,16 +39,11 @@ sub create_form {
 
 
 sub save_form {
-	my( $c ) =  @_;
+	my( $c ) = @_;
 
-	my $name =  $c->param( 'name' );
-	# my $name =  $c->param( 'x' );
-	# my $name =  $c->param( 'y' );
-	$c->db->resultset( 'Client' )->create({
-		name => $name,
-		# x    => $x,
-		# y    => $y,
-	});
+	my $name = $c->param( 'name' );
+
+	$c->db->resultset( 'Client' )->create({ name => $name });
 
 	$c->render( text => 'Data saved' );
 }
@@ -58,14 +55,7 @@ sub show_client {
 
 	my $id =  $c->param( 'id' );
 
-	my $client =  $c->db
-		->resultset( 'Client' )
-		->search({ id => $id });
-	# [ ....... ]
-
-
-	$client =  $client->first;
-	# [0]
+	my $client =  $c->db->resultset( 'Client' )->search({ id => $id })->first;
 
 	my $result .= join ' -- ', $client->id, $client->name;
 
@@ -78,10 +68,7 @@ sub edit_form {
 	my( $c ) =  @_;
 
 	my $id =  $c->param( 'id' );
-	my $client =  $c->db
-		->resultset( 'Client' )
-		->search({id => $id,})
-		->first;
+	my $client =  $c->db->resultset( 'Client' )->search({ id => $id })->first;
 
 	my $name =  $client->name;
 
@@ -102,15 +89,9 @@ sub update_form {
 	my( $c ) =  @_;
 
 	my $id =  $c->param( 'id' );
-	my $client =  $c->db->resultset( 'Client' )->search({
-		id => $id,
-	})->first;
+	my $client =  $c->db->resultset( 'Client' )->search({ id => $id })->first;
 
-	my $name =  $c->param( 'name' );
-
-	$client->update({
-		name => $name,
-	});
+	$client->update({ name => $c->param( 'name' ) });
 
 	$c->render( text => 'Data updated' );
 }
@@ -124,34 +105,12 @@ sub delete_client {
 
 	my $ds =  $c->db->resultset( 'Client' );
 
-	my $client =  $ds->search({ id => [ split ',', $id ] }); #({ id => [ $id, $id+1 ] });
+	my $client =  $ds->search({ id => [ split ',', $id ] })->delete; #({ id => [ $id, $id+1 ] });
 	$client->delete;
 
-
-
-	$c->render( text => 'OK' );
+	$c->render( text => 'deleted' );
 }
 
 
 
 1;
-
-__END__
-
-<body>
-<div> .... </div>
-<div> .... </div>
-<div>
-	<p> ... </p>
-	<p> ... </p>
-	<p>skdfjsldfj <img sdfsdfsdf></img> </p>
-</div>
-</body>
-
-
-gn
-gd <N>
-ga <N>
-gds <N>
-cm
-git tree

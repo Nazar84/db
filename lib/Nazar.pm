@@ -37,17 +37,22 @@ sub startup {
   $r->get('/driver/create')->to( 'driver#save_form');
   $r->get('/driver/create')->to( 'driver#save_form');
 
-  $r->get('/track'        )->to( 'track#read_track'   );
-  $r->get('/track/create' )->to( 'track#create_track' );
-  $r->get('/track/delete' )->to( 'track#delete_track' );
+  $r->get ( '/track'               )->to( 'track#list_tracks'    );
+  $r->get ( '/track/create'        )->to( 'track#create_form'    );
+  $r->post( '/track/create'        )->to( 'track#save_form'      );
+  $r->get ( '/track/show/<:id>'    )->to( 'track#show_track'     );
+  $r->get ( '/track/edit/<:id>'    )->to( 'track#edit_form'      );
+  $r->post( '/track/edit/<:id>'    )->to( 'track#update_form'    );
+  $r->get ( '/track/delete/<:id>'  )->to( 'track#delete_track'   );
+
 
   $r->get ( '/client'              )->to( 'client#list_clients'  );
-  $r->get ( '/client/create'       )->to( 'client#create_form'  );
-  $r->post( '/client/create'       )->to( 'client#save_form'    );
-  $r->get ( '/client/show/<:id>'   )->to( 'client#show_client'  );
-  $r->get ( '/client/edit/<:id>'   )->to( 'client#edit_form'    );
-  $r->post( '/client/edit/<:id>'   )->to( 'client#update_form'  );
-  $r->get ( '/client/delete/<:id>' )->to( 'client#delete_client');
+  $r->get ( '/client/create'       )->to( 'client#create_form'   );
+  $r->post( '/client/create'       )->to( 'client#save_form'     );
+  $r->get ( '/client/show/<:id>'   )->to( 'client#show_client'   );
+  $r->get ( '/client/edit/<:id>'   )->to( 'client#edit_form'     );
+  $r->post( '/client/edit/<:id>'   )->to( 'client#update_form'   );
+  $r->get ( '/client/delete/<:id>' )->to( 'client#delete_client' );
 
   $r->get('/figura')->to( 'example#read_figura' );
   $r->get('/figura/create')->to( 'example#create_figura' );
