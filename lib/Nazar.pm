@@ -28,17 +28,18 @@ sub startup {
 
   # Normal route to controller
   $r->get('/')->to('example#welcome');
-  $r->get('/driver')->to( 'example#read_driver' );
-  $r->get('/driver/create')->to( 'example#create_driver' );
-  $r->get('/driver/delete')->to( 'example#delete_driver' );
-  $r->get('/track')->to( 'example#read_track' );
-  $r->get('/track/create')->to( 'example#create_track' );
-  $r->get('/track/delete')->to( 'example#delete_track' );
-  $r->get('/client')->to( 'client#read_client' );
-  $r->get ('/client/edit/<:id>')->to( 'client#edit_form' );
-  $r->post('/client/edit/<:id>')->to( 'client#save_form' );
-  $r->get('/client/create')->to( 'client#create_client' );
-  $r->get('/client/delete/<:id>')->to( 'client#delete_client' );
+
+  $r->get('/driver'       )->to( 'driver#read_driver'  );
+  $r->get('/driver/create')->to( 'driver#create_form');
+  $r->get('/driver/create')->to( 'driver#save_form');
+  $r->get('/driver/create')->to( 'driver#save_form');
+  $r->get('/driver/create')->to( 'driver#save_form');
+  $r->get('/driver/create')->to( 'driver#save_form');
+  $r->get('/driver/create')->to( 'driver#save_form');
+
+  $r->get('/track'        )->to( 'track#read_track'   );
+  $r->get('/track/create' )->to( 'track#create_track' );
+  $r->get('/track/delete' )->to( 'track#delete_track' );
 
   $r->get ( '/client'              )->to( 'client#list_clients'  );
   $r->get ( '/client/create'       )->to( 'client#create_form'  );
