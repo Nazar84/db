@@ -3,7 +3,7 @@ use Mojo::Base 'Mojolicious::Controller';
 
 
 
-sub list_clients {
+sub list_client {
 	my( $c ) =  @_;
 
 	my @clients =  $c->db
@@ -58,6 +58,8 @@ sub show_client {
 	my $client =  $c->db->resultset( 'Client' )->search({ id => $id })->first;
 
 	my $result .= join ' -- ', $client->id, $client->name;
+	$result .= " <a href='/driver/edit/" .$id ."'>Edit</a>";
+	$result .= " <a href='/driver/delete/" .$id ."'>Delete</a>";
 
 	$c->render( text => $result );
 }

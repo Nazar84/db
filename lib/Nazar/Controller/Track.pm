@@ -3,7 +3,7 @@ use Mojo::Base 'Mojolicious::Controller';
 
 
 
-sub list_tracks {
+sub list_track {
 	my( $c ) =  @_;
 
 	my @tracks =  $c->db
@@ -58,6 +58,8 @@ sub show_track {
 	my $track =  $c->db->resultset( 'Track' )->search({ id => $id })->first;
 
 	my $result .= join ' -- ', $track->id, $track->name;
+	$result .= " <a href='/driver/edit/" .$id ."'>Edit</a>";
+	$result .= " <a href='/driver/delete/" .$id ."'>Delete</a>";
 
 	$c->render( text => $result );
 }
@@ -68,11 +70,12 @@ sub edit_form {
 	my( $c ) =  @_;
 
 	my $id =  $c->param( 'id' );
+	
 	my $track =  $c->db->resultset( 'Track' )->search({ id => $id })->first;
 
 	my $name =  $track->name;
 
-	my $form =  <<"	TEXT";
+	my $form = <<"	TEXT";
 	<form action="" method="POST">
 	<label for="GET-name">Name:</label>
 	<input id="GET-name" type="text" name="name" value="$name">
@@ -88,10 +91,12 @@ sub edit_form {
 sub update_form {
 	my( $c ) =  @_;
 
-	my $id =  $c->param( 'id' );
-	my $track =  $c->db->resultset( 'Track' )->search({ id => $id })->first;
+	my $id   = $c->param( 'id' );
+	my $name = $c->param( 'name' );
 
-	$track->update({ name => $c->param( 'name' ) });
+	my $track = $c->db->resultset( 'Track' )->search({ id => $id })->first;
+
+	$track->update({ name => $name });
 
 	$c->render( text => 'Data updated' );
 }
