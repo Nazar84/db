@@ -98,7 +98,7 @@ sub update_form {
 
 	$track->update({ name => $name });
 
-	$c->render( text => 'Data updated' );
+	$c->render( text => 'Data is updated' );
 }
 
 

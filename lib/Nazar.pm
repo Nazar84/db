@@ -54,8 +54,14 @@ sub startup {
   $r->post( '/client/edit/<:id>'   )->to( 'client#update_form'   );
   $r->get ( '/client/delete/<:id>' )->to( 'client#delete_client' );
 
-  $r->get('/figura')->to( 'example#read_figura' );
-  $r->get('/figura/create')->to( 'example#create_figura' );
+  $r->get ( '/figura'              )->to( 'figura#list_figura'   );
+  $r->get ( '/figura/create'       )->to( 'figura#create_form'   );
+  $r->post( '/figura/create'       )->to( 'figura#save_form'     );
+  $r->get ( '/figura/show/<:id>'   )->to( 'figura#show_figura'   );
+  $r->get ( '/figura/edit/<:id>'   )->to( 'figura#edit_form'     );
+  $r->post( '/figura/edit/<:id>'   )->to( 'figura#update_form'   );
+  $r->get ( '/figura/delete/<:id>' )->to( 'figura#delete_figura' );
+  
   warn "APPLICATION READY\n";
 }
 

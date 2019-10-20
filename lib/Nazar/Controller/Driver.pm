@@ -1,6 +1,8 @@
 package Nazar::Controller::Driver;
 use Mojo::Base 'Mojolicious::Controller';
 
+
+
 sub list_driver {
 	my( $c ) =  @_;
 
@@ -9,6 +11,7 @@ sub list_driver {
 	my $result =  '';
 	for my $i ( @drivers ) {
 		$result .= join ' -- ', $i->id, $i->name, $i->tel, $i->mail;
+
 		$result .= " <a href='/driver/edit/" .$i->id ."'>Edit</a>";
 		$result .= " <a href='/driver/delete/" .$i->id ."'>Delete</a>";
 		$result .= '<br>';
@@ -122,7 +125,7 @@ sub update_form {
 
 	$driver->update({ name => $name, tel => $tel, mail => $mail });
 
-	$c->render( text => 'Data is saved' );
+	$c->render( text => 'Data is updated' );
 }
 
 
@@ -136,12 +139,6 @@ sub delete_driver {
 
 	$c->render( text => 'deleted' );
 }
-
-
-
-
-
-
 
 
 

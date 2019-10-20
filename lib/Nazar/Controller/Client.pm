@@ -72,7 +72,7 @@ sub edit_form {
 	my $id =  $c->param( 'id' );
 	my $client =  $c->db->resultset( 'Client' )->search({ id => $id })->first;
 
-	my $name =  $client->name;
+	my $name = $client->name;
 
 	my $form =  <<"	TEXT";
 	<form action="" method="POST">
@@ -95,7 +95,7 @@ sub update_form {
 
 	$client->update({ name => $c->param( 'name' ) });
 
-	$c->render( text => 'Data updated' );
+	$c->render( text => 'Data is updated' );
 }
 
 
@@ -103,11 +103,9 @@ sub update_form {
 sub delete_client {
 	my( $c ) = @_;
 
-	my $id =  $c->param( 'id' );
+	my $id = $c->param( 'id' );
 
-	my $ds =  $c->db->resultset( 'Client' );
-
-	my $client =  $ds->search({ id => [ split ',', $id ] })->delete; #({ id => [ $id, $id+1 ] });
+	my $client = $c->db->resultset( 'Client' )->search({ id => [ split ',', $id ] });
 	$client->delete;
 
 	$c->render( text => 'deleted' );
