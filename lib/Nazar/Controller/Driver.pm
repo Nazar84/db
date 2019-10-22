@@ -140,6 +140,4 @@ sub delete_driver {
 	$c->render( text => 'deleted' );
 }
 
-
-
 1;

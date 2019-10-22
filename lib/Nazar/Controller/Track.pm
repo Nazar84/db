@@ -114,6 +114,4 @@ sub delete_track {
 	$c->render( text => 'deleted' );
 }
 
-
-
 1;

@@ -22,6 +22,5 @@ $X->add_columns(
 $X->set_primary_key( 'id' );
 $X->add_unique_constraint([ 'name' ]);
 
-
 1;
 

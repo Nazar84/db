@@ -111,6 +111,4 @@ sub delete_client {
 	$c->render( text => 'deleted' );
 }
 
-
-
 1;

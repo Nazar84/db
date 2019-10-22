@@ -57,7 +57,7 @@ sub create_form {
 
 	<form action="" method="POST">
 	<label for="GET-name">green:</label>
-	<input id="GET-name" type="text" name="name">
+	<input id="GET-name" type="text" name="green">
 	<br>
 
 	<form action="" method="POST">
@@ -103,16 +103,16 @@ sub save_form {
 
 	my $figura = $c->db->resultset( 'Figura' );
 	$figura->create({
-		x            => $x,
-		y            => $y,
-		width        => $width,
-		height       => $height,
-		red          => $red,
-		green        => $green,
-		blue         => $blue,
-		moving       => $moving,
-		take_point_x => $take_point_x,
-		take_point_y => $take_point_y,
+		x            => $x            || 0, 
+		y            => $y            || 0,
+		width        => $width        || 0,
+		height       => $height       || 0,
+		red          => $red          || 0,
+		green        => $green        || 0,
+		blue         => $blue         || 0,
+		moving       => $moving       || 0,
+		take_point_x => $take_point_x || 0,
+		take_point_y => $take_point_y || 0,
 	});
 
 	$c->render( text => 'Data is saved' );
@@ -236,16 +236,16 @@ sub update_form {
 	my $figura = $c->db->resultset( 'Figura' )->search({ id => $id })->first;
 
 	$figura->update({
-		x            => $x, 
-		y            => $y,
-		width        => $width,
-		height       => $height,
-		red          => $red,
-		green        => $green,
-		blue         => $blue,
-		moving       => $moving,
-		take_point_x => $take_point_x,
-		take_point_y => $take_point_y,
+		x            => $x            || 0, 
+		y            => $y            || 0,
+		width        => $width        || 0,
+		height       => $height       || 0,
+		red          => $red          || 0,
+		green        => $green        || 0,
+		blue         => $blue         || 0,
+		moving       => $moving       || 0,
+		take_point_x => $take_point_x || 0,
+		take_point_y => $take_point_y || 0,
 	});
 
 	$c->render( text => 'Data is updated' );
@@ -263,7 +263,5 @@ sub delete_figura {
 
 	$c->render( text => 'deleted' );
 }
-
-
 
 1;
