@@ -16,7 +16,7 @@ DOCKER_CONTAINER :=  postgres-db
 DEBUG_CMD = PERLDB_OPTS="white_box" PERL5DB="use DB::Hooks qw'::Terminal NonStop'" perl -d
 
 
-gen_conf:
+dbconfig:
 	cp ${CONF_DIR}/db_env.conf ${CONF_DIR}/db_env.conf.back
 	${APP} db_env > ${CONF_DIR}/db_env.conf
 
